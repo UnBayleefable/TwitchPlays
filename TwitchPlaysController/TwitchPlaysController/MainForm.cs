@@ -16,36 +16,6 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
-        /*// Initialize controls
-        this.Size = new Size(400, 300);
-        this.Text = "Twitch Plays Controller";
-
-        var startButton = new Button
-        {
-            Text = "Start Script",
-            Location = new Point(20, 20),
-            Size = new Size(100, 30),
-            Visible = !isRunning
-        };
-        startButton.Click += StartScript_Click;
-
-        var stopButton = new Button
-        {
-            Text = "Stop Script",
-            Location = new Point(130, 20),
-            Size = new Size(100, 30),
-            Visible = isRunning
-
-        };
-        stopButton.Click += StopScript_Click;
-
-        var statusLabel = new Label
-        {
-            AutoSize = true,
-            Location = new Point(20, 70)
-        };
-
-        Controls.AddRange(new Control[] { startButton, stopButton, statusLabel });*/
     }
 
     private async void btnStart_Click(object sender, EventArgs e)
@@ -62,8 +32,9 @@ public partial class MainForm : Form
 
                 await Task.Run(() => pipeServer.WaitForConnection());
                 StartPythonProcess();
-                isRunning = true;
-
+                btnPause.Enabled = isRunning;
+                btnStop.Enabled = isRunning;
+                btnStart.Enabled = !isRunning;
             }
             catch (Exception ex)
             {
@@ -90,11 +61,43 @@ public partial class MainForm : Form
 
     private void btnStop_Click(object sender, EventArgs e)
     {
+        if (isRunning)
+        {
+            try
+            {
+                pythonProcess.Kill();
+                pipeServer.Dispose();
+                isRunning = false;
 
+                btnPause.Enabled = isRunning;
+                btnStop.Enabled = isRunning;
+                btnStart.Enabled = !isRunning;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error stopping script: {ex.Message}");
+            }
+        }
     }
 
     private void btnPause_Click(object sender, EventArgs e)
     {
+        if (isRunning)
+        {
+            try
+            {
+                pythonProcess.Kill();
+                pipeServer.Dispose();
+                isRunning = false;
 
+                btnPause.Enabled = isRunning;
+                btnStop.Enabled = isRunning;
+                btnStart.Enabled = !isRunning;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error stopping script: {ex.Message}");
+            }
+        }
     }
 }

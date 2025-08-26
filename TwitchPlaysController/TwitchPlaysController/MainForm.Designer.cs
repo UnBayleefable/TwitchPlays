@@ -88,13 +88,14 @@ partial class MainForm
         btnPause.TabIndex = 2;
         btnPause.Text = "Pause";
         btnPause.UseVisualStyleBackColor = true;
+        btnPause.Visible = false;
         btnPause.Click += btnPause_Click;
         // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1057, 744);
+        ClientSize = new Size(960, 746);
         Controls.Add(gboControls);
         Name = "MainForm";
         Text = "TwitchPlays";

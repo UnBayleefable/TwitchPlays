@@ -75,7 +75,6 @@ partial class MainForm
         tboConsole.Location = new Point(21, 110);
         tboConsole.Multiline = true;
         tboConsole.Name = "tboConsole";
-        tboConsole.ReadOnly = true;
         tboConsole.Size = new Size(444, 314);
         tboConsole.TabIndex = 3;
         // 
@@ -88,7 +87,6 @@ partial class MainForm
         btnPause.TabIndex = 2;
         btnPause.Text = "Pause";
         btnPause.UseVisualStyleBackColor = true;
-        btnPause.Visible = false;
         btnPause.Click += btnPause_Click;
         // 
         // MainForm
